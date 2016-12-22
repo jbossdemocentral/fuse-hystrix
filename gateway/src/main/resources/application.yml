@@ -1,0 +1,17 @@
+camel:
+  springboot:
+    name: gateway
+
+endpoints:
+  enabled: false
+  health:
+    enabled: true
+
+definition:
+  hostname: definition
+  portnumber: 8080
+  
+hystrix:
+  executionTimeout: 2000
+  groupKey: dictionary
+  circuitBreakerEnabled: true

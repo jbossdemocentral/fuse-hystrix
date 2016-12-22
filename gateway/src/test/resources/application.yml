@@ -1,0 +1,21 @@
+camel:
+  springboot:
+    name: gateway
+
+server:
+  port: 8080
+
+# disable all management enpoints except health
+endpoints:
+  enabled: false
+  health:
+    enabled: true
+    
+definition:
+  hostname: localhost
+  portnumber: 8180
+  
+hystrix:
+  executionTimeout: 2000
+  groupKey: dictionary
+  circuitBreakerEnabled: true

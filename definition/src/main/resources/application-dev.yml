@@ -1,0 +1,17 @@
+camel:
+  springboot:
+    # The Camel context name
+    name: definition
+
+server:
+  port: 8180
+
+# Binding health checks to a different port
+management:
+  port: 8180
+
+# disable all management enpoints except health
+endpoints:
+  enabled: false
+  health:
+    enabled: true

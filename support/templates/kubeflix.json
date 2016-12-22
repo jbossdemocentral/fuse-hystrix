@@ -1,0 +1,316 @@
+{
+    "kind": "Template",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "kubeflix",
+        "creationTimestamp": null,
+        "annotations": {
+            "description": "Contains the Hystrix dashboard along with a Turbine server for viewing consolidated circuit breaker metrics\n",
+            "fabric8.hystrix-dashboard/iconUrl": "https://raw.githubusercontent.com/fabric8io/kubeflix/master/hystrix-dashboard/src/main/fabric8/logo.png",
+            "fabric8.hystrix-dashboard/summary": "Dashboard for visualization of Hystrix streams",
+            "fabric8.kubeflix/summary": "Turbine Server and Hystrix Dashboard",
+            "fabric8.turbine-server/iconUrl": "https://raw.githubusercontent.com/fabric8io/kubeflix/master/turbine-server/src/main/fabric8/logo.png",
+            "fabric8.turbine-server/summary": "Turbine server with the Kubernetes discovery module pre-installed and pre-configured"
+        }
+    },
+    "objects": [
+        {
+            "apiVersion": "v1",
+            "imagePullSecrets": [],
+            "kind": "ServiceAccount",
+            "metadata": {
+                "annotations": {
+                    "fabric8.io/iconUrl": "https://raw.githubusercontent.com/fabric8io/kubeflix/master/hystrix-dashboard/src/main/fabric8/logo.png"
+                },
+                "labels": {
+                    "package": "kubeflix"
+                },
+                "name": "ribbon"
+            },
+            "secrets": []
+        },
+        {
+            "apiVersion": "v1",
+            "imagePullSecrets": [],
+            "kind": "ServiceAccount",
+            "metadata": {
+                "annotations": {
+                    "fabric8.io/iconUrl": "https://raw.githubusercontent.com/fabric8io/kubeflix/master/turbine-server/src/main/fabric8/logo.png"
+                },
+                "labels": {
+                    "package": "kubeflix"
+                },
+                "name": "turbine"
+            },
+            "secrets": []
+        },
+        {
+          "kind": "RoleBinding",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "turbine_edit",
+              "labels": {
+                  "group": "io.fabric8.kubeflix",
+                  "package": "kubeflix",
+                  "project": "hystrix-dashboard",
+                  "provider": "fabric8",
+                  "version": "1.0.17"
+              }
+          },
+          "groupNames": null,
+          "subjects": [
+              {
+                  "kind": "ServiceAccount",
+                  "name": "turbine"
+              }
+          ],
+          "roleRef": {
+              "name": "edit"
+          }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "fabric8.io/iconUrl": "https://raw.githubusercontent.com/fabric8io/kubeflix/master/hystrix-dashboard/src/main/fabric8/logo.png"
+                },
+                "labels": {
+                    "group": "io.fabric8.kubeflix",
+                    "package": "kubeflix",
+                    "project": "hystrix-dashboard",
+                    "provider": "fabric8",
+                    "version": "1.0.17"
+                },
+                "name": "hystrix-dashboard"
+            },
+            "spec": {
+                "deprecatedPublicIPs": [],
+                "externalIPs": [],
+                "ports": [
+                    {
+                        "port": 80,
+                        "protocol": "TCP",
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "group": "io.fabric8.kubeflix",
+                    "project": "hystrix-dashboard",
+                    "provider": "fabric8"
+                },
+                "type": "LoadBalancer"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "fabric8.io/iconUrl": "https://raw.githubusercontent.com/fabric8io/kubeflix/master/turbine-server/src/main/fabric8/logo.png",
+                    "servicepath": "/turbine.stream"
+                },
+                "labels": {
+                    "group": "io.fabric8.kubeflix",
+                    "package": "kubeflix",
+                    "project": "turbine-server",
+                    "provider": "fabric8",
+                    "version": "1.0.17"
+                },
+                "name": "turbine-server"
+            },
+            "spec": {
+                "deprecatedPublicIPs": [],
+                "externalIPs": [],
+                "ports": [
+                    {
+                        "port": 80,
+                        "protocol": "TCP",
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "group": "io.fabric8.kubeflix",
+                    "project": "turbine-server",
+                    "provider": "fabric8"
+                },
+                "type": "LoadBalancer"
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "hystrix-dashboard",
+                "labels": {
+                    "group": "io.fabric8.kubeflix",
+                    "package": "kubeflix",
+                    "project": "hystrix-dashboard",
+                    "provider": "fabric8",
+                    "version": "1.0.17"
+                }
+            },
+            "spec": {
+                "to": {
+                    "kind": "Service",
+                    "name": "hystrix-dashboard"
+                },
+                "port": {
+                    "targetPort": 8080
+                }
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "ReplicationController",
+            "metadata": {
+                "annotations": {
+                    "fabric8.io/build-id": "4",
+                    "fabric8.io/build-url": "http://jenkins.cd.beast.fabric8.io/job/Single-kubeflix/4/",
+                    "fabric8.io/git-branch": "release-v1.0.17",
+                    "fabric8.io/git-commit": "20b27ddc06b6d06ba2e1af42e3d590be6764bb09",
+                    "fabric8.io/iconUrl": "https://raw.githubusercontent.com/fabric8io/kubeflix/master/hystrix-dashboard/src/main/fabric8/logo.png"
+                },
+                "labels": {
+                    "group": "io.fabric8.kubeflix",
+                    "package": "kubeflix",
+                    "project": "hystrix-dashboard",
+                    "provider": "fabric8",
+                    "version": "1.0.17"
+                },
+                "name": "hystrix-dashboard"
+            },
+            "spec": {
+                "replicas": 1,
+                "selector": {
+                    "group": "io.fabric8.kubeflix",
+                    "project": "hystrix-dashboard",
+                    "provider": "fabric8",
+                    "version": "1.0.17"
+                },
+                "template": {
+                    "metadata": {
+                        "annotations": {},
+                        "labels": {
+                            "group": "io.fabric8.kubeflix",
+                            "package": "kubeflix",
+                            "project": "hystrix-dashboard",
+                            "provider": "fabric8",
+                            "version": "1.0.17"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "args": [],
+                                "command": [],
+                                "env": [
+                                    {
+                                        "name": "KUBERNETES_NAMESPACE",
+                                        "valueFrom": {
+                                            "fieldRef": {
+                                                "fieldPath": "metadata.namespace"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "image": "fabric8/hystrix-dashboard:1.0.17",
+                                "name": "hystrix-dashboard",
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "name": "http"
+                                    }
+                                ],
+                                "securityContext": {},
+                                "volumeMounts": []
+                            }
+                        ],
+                        "imagePullSecrets": [],
+                        "nodeSelector": {},
+                        "serviceAccountName": "ribbon",
+                        "volumes": []
+                    }
+                }
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "ReplicationController",
+            "metadata": {
+                "annotations": {
+                    "fabric8.io/build-id": "4",
+                    "fabric8.io/build-url": "http://jenkins.cd.beast.fabric8.io/job/Single-kubeflix/4/",
+                    "fabric8.io/git-branch": "release-v1.0.17",
+                    "fabric8.io/git-commit": "20b27ddc06b6d06ba2e1af42e3d590be6764bb09",
+                    "fabric8.io/iconUrl": "https://raw.githubusercontent.com/fabric8io/kubeflix/master/turbine-server/src/main/fabric8/logo.png"
+                },
+                "labels": {
+                    "group": "io.fabric8.kubeflix",
+                    "package": "kubeflix",
+                    "project": "turbine-server",
+                    "provider": "fabric8",
+                    "version": "1.0.17"
+                },
+                "name": "turbine-server"
+            },
+            "spec": {
+                "replicas": 1,
+                "selector": {
+                    "group": "io.fabric8.kubeflix",
+                    "project": "turbine-server",
+                    "provider": "fabric8",
+                    "version": "1.0.17"
+                },
+                "template": {
+                    "metadata": {
+                        "annotations": {},
+                        "labels": {
+                            "group": "io.fabric8.kubeflix",
+                            "package": "kubeflix",
+                            "project": "turbine-server",
+                            "provider": "fabric8",
+                            "version": "1.0.17"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "args": [],
+                                "command": [],
+                                "env": [
+                                    {
+                                        "name": "KUBERNETES_NAMESPACE",
+                                        "valueFrom": {
+                                            "fieldRef": {
+                                                "fieldPath": "metadata.namespace"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "image": "fabric8/turbine-server:1.0.17",
+                                "name": "turbine-server",
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "name": "http"
+                                    },
+                                    {
+                                        "containerPort": 8778,
+                                        "name": "jolokia"
+                                    }
+                                ],
+                                "securityContext": {},
+                                "volumeMounts": []
+                            }
+                        ],
+                        "imagePullSecrets": [],
+                        "nodeSelector": {},
+                        "serviceAccountName": "turbine",
+                        "volumes": []
+                    }
+                }
+            }
+        }
+    ]
+}
