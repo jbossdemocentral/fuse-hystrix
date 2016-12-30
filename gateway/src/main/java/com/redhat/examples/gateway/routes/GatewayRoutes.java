@@ -1,5 +1,7 @@
 package com.redhat.examples.gateway.routes;
 
+import javax.ws.rs.core.Response;
+
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
@@ -26,20 +28,16 @@ public class GatewayRoutes extends RouteBuilder {
 	
         restConfiguration()
         .contextPath("/api").apiContextPath("/api-doc")
-            .apiProperty("api.title", "Fissonary REST API")
+            .apiProperty("api.title", "Fuse Integration Services Hystrix Demo REST API")
+            .apiProperty("host", "")
             .apiProperty("api.version", "1.0")
             .apiProperty("cors", "true")
             .apiContextRouteId("doc-api")
         .component("servlet")
         .dataFormatProperty("include", "NON_NULL");
-        
-        rest("/definition").description("Provides definition services")
-/*
-        .get("/").description("The list of all the books")
-            .route().routeId("definition-list")
-            .to("direct:default-response")
-            .endRest()
-*/
+
+        rest("/definition").description("Provides Definition Services")
+
         .get("/{word}").description("Get meaning for word")
             .route().routeId("definition-word")
             	.hystrix()
@@ -55,11 +53,10 @@ public class GatewayRoutes extends RouteBuilder {
             			.log("Failed to Query Definition Service")
             			.to("direct:default-response")
             			.marshal().json(JsonLibrary.Jackson)
+            			.setHeader(Exchange.HTTP_RESPONSE_CODE, constant(Response.Status.SERVICE_UNAVAILABLE.getStatusCode()))
             			.setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
             		.end();
-		
-        onException(Exception.class).log("Exception Occurred!");
-        
+
         // Provide a response
         from("direct:default-response").routeId("default-response").description("Default API response")
         .process(new Processor() {

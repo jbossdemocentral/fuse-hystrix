@@ -48,6 +48,10 @@ The manual build and deployment method takes advantage of the [Fabric8 Maven Plu
 
 First, create a new OpenShift project called *fis-hystrix*
 
+```
+oc new-project fis-hystrix --description="Fuse Integration Services Hystrix Demo" --display-name="FIS Hystrix"
+```
+
 Within each microservices directory, execute the following command which will execute the *ocp* profile that executes the `clean fabric8:deploy` maven goal:
 
 ```
@@ -79,7 +83,21 @@ oc get routes hystrix-dashboard --template='{{ .spec.host }}'
 	
 Using a web browser, navigate to the address obtained from the previous command. The URL of the stream provided by turbine is already repopulated. Click **Monitor Stream** to view the results from the gateway microservice
 
-## Testing
+## Swagger UI
+
+A [Swagger User Interface](http://swagger.io/swagger-ui/) is available within the gateway application to view and invoke the available services. 
+
+Navigate to the gateway application. The URL can be found in the OpenShift Web Console
+
+![](images/ocp-ui.png "OpenShift User Interface")
+
+Select the hyperlink for the gateway application to launch the Swagger UI
+
+![](images/swagger-ui.png "Swagger User Interface")
+
+The raw swagger definition can also be found at the context path `api/api-doc` 
+
+## Command Line Testing
 
 Using a command line, execute the following to query the definition service
 

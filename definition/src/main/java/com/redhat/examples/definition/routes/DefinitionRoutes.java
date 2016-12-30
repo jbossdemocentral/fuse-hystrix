@@ -16,6 +16,7 @@ public class DefinitionRoutes extends RouteBuilder {
             .apiProperty("api.title", "Definition REST API")
             .apiProperty("api.version", "1.0")
             .apiProperty("cors", "true")
+            .apiProperty("host", "")
             .apiContextRouteId("doc-api")
         .component("servlet")
         .dataFormatProperty("include", "NON_NULL")
