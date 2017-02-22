@@ -8,8 +8,8 @@
   <name>Fuse Integration Services - Hystrix - Gateway</name>
   <properties>
     <spring-boot.version>1.4.1.RELEASE</spring-boot.version>
-    <fabric8.version>2.2.170.redhat-000004</fabric8.version>
-    <fabric8.maven.plugin.version>3.1.80.redhat-000004</fabric8.maven.plugin.version>
+    <fabric8.version>2.2.170.redhat-000010</fabric8.version>
+    <fabric8.maven.plugin.version>3.1.80.redhat-000010</fabric8.maven.plugin.version>
     <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
     <run.profiles>dev</run.profiles>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -55,12 +55,9 @@
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-swagger-java-starter</artifactId>
     </dependency>
-    
-    <!--  Using Updated Hystrix Library to resolve CAMEL-10430 -->
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-hystrix</artifactId>
-      <version>2.18.1</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>

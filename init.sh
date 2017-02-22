@@ -8,7 +8,7 @@ oc whoami >/dev/null 2>&1 || { echo "Cannot validate connectivity to OpenShift. 
 echo
 echo "Creating new project ${PROJECT_NAME}..."
 echo
-oc new-project "${PROJECT_NAME} --description="Fuse Integration Services Hystrix Demo" --display-name="FIS Hystrix" >/dev/null 2>&1"
+oc new-project "${PROJECT_NAME}" --description="Fuse Integration Services Hystrix Demo" --display-name="FIS Hystrix" >/dev/null 2>&1
 
 echo
 echo "Deploying Kubeflix..."

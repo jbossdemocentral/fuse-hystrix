@@ -42,9 +42,9 @@
             "description": "Custom hostname for http service route.  Leave blank for default hostname, e.g.: \u003capplication-name\u003e-\u003cproject\u003e.\u003cdefault-domain-suffix\u003e"
         },
         {
-            "description": "Path within Git project to build; empty for root project directory.",
+            "description": "Base image for which new images are built upon.",
             "name": "BUILDER_IMAGE",
-            "value": "registry.access.redhat.com/jboss-fuse-6-tech-preview/fis-java-openshift:2.0",
+            "value": "registry.access.redhat.com/jboss-fuse-6/fis-java-openshift:2.0",
             "required": true
         }
     ],
