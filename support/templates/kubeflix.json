@@ -54,7 +54,7 @@
                   "package": "kubeflix",
                   "project": "hystrix-dashboard",
                   "provider": "fabric8",
-                  "version": "1.0.17"
+                  "version": "1.0.28"
               }
           },
           "groupNames": null,
@@ -80,7 +80,7 @@
                     "package": "kubeflix",
                     "project": "hystrix-dashboard",
                     "provider": "fabric8",
-                    "version": "1.0.17"
+                    "version": "1.0.28"
                 },
                 "name": "hystrix-dashboard"
             },
@@ -115,7 +115,7 @@
                     "package": "kubeflix",
                     "project": "turbine-server",
                     "provider": "fabric8",
-                    "version": "1.0.17"
+                    "version": "1.0.28"
                 },
                 "name": "turbine-server"
             },
@@ -147,7 +147,7 @@
                     "package": "kubeflix",
                     "project": "hystrix-dashboard",
                     "provider": "fabric8",
-                    "version": "1.0.17"
+                    "version": "1.0.28"
                 }
             },
             "spec": {
@@ -167,7 +167,7 @@
                 "annotations": {
                     "fabric8.io/build-id": "4",
                     "fabric8.io/build-url": "http://jenkins.cd.beast.fabric8.io/job/Single-kubeflix/4/",
-                    "fabric8.io/git-branch": "release-v1.0.17",
+                    "fabric8.io/git-branch": "release-v1.0.28",
                     "fabric8.io/git-commit": "20b27ddc06b6d06ba2e1af42e3d590be6764bb09",
                     "fabric8.io/iconUrl": "https://raw.githubusercontent.com/fabric8io/kubeflix/master/hystrix-dashboard/src/main/fabric8/logo.png"
                 },
@@ -176,7 +176,7 @@
                     "package": "kubeflix",
                     "project": "hystrix-dashboard",
                     "provider": "fabric8",
-                    "version": "1.0.17"
+                    "version": "1.0.28"
                 },
                 "name": "hystrix-dashboard"
             },
@@ -186,7 +186,7 @@
                     "group": "io.fabric8.kubeflix",
                     "project": "hystrix-dashboard",
                     "provider": "fabric8",
-                    "version": "1.0.17"
+                    "version": "1.0.28"
                 },
                 "template": {
                     "metadata": {
@@ -196,7 +196,7 @@
                             "package": "kubeflix",
                             "project": "hystrix-dashboard",
                             "provider": "fabric8",
-                            "version": "1.0.17"
+                            "version": "1.0.28"
                         }
                     },
                     "spec": {
@@ -214,7 +214,7 @@
                                         }
                                     }
                                 ],
-                                "image": "fabric8/hystrix-dashboard:1.0.17",
+                                "image": "fabric8/hystrix-dashboard:1.0.28",
                                 "name": "hystrix-dashboard",
                                 "ports": [
                                     {
@@ -241,7 +241,7 @@
                 "annotations": {
                     "fabric8.io/build-id": "4",
                     "fabric8.io/build-url": "http://jenkins.cd.beast.fabric8.io/job/Single-kubeflix/4/",
-                    "fabric8.io/git-branch": "release-v1.0.17",
+                    "fabric8.io/git-branch": "release-v1.0.28",
                     "fabric8.io/git-commit": "20b27ddc06b6d06ba2e1af42e3d590be6764bb09",
                     "fabric8.io/iconUrl": "https://raw.githubusercontent.com/fabric8io/kubeflix/master/turbine-server/src/main/fabric8/logo.png"
                 },
@@ -250,7 +250,7 @@
                     "package": "kubeflix",
                     "project": "turbine-server",
                     "provider": "fabric8",
-                    "version": "1.0.17"
+                    "version": "1.0.28"
                 },
                 "name": "turbine-server"
             },
@@ -260,7 +260,7 @@
                     "group": "io.fabric8.kubeflix",
                     "project": "turbine-server",
                     "provider": "fabric8",
-                    "version": "1.0.17"
+                    "version": "1.0.28"
                 },
                 "template": {
                     "metadata": {
@@ -270,7 +270,7 @@
                             "package": "kubeflix",
                             "project": "turbine-server",
                             "provider": "fabric8",
-                            "version": "1.0.17"
+                            "version": "1.0.28"
                         }
                     },
                     "spec": {
@@ -288,7 +288,7 @@
                                         }
                                     }
                                 ],
-                                "image": "fabric8/turbine-server:1.0.17",
+                                "image": "fabric8/turbine-server:1.0.28",
                                 "name": "turbine-server",
                                 "ports": [
                                     {
